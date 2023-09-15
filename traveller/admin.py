@@ -2,11 +2,11 @@ from django.contrib import admin
 from traveller.models import Traveller, Comment
 
 
-admin.site.register(Traveller)
-admin.site.register(Comment)
+@admin.register(Traveller)
+class TravellerAdmin(admin.ModelAdmin):
+    list_display = ['id', 'first_name', 'last_name', 'phone_number', 'email', 'rating']
 
-# @admin.register(Traveller)
-# class TravellerAdmin(admin.AdminSite):
-#     pass
 
-# Register your models here.
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['id', 'author', 'receiver', 'created_at']

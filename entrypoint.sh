@@ -12,4 +12,4 @@ python3 manage.py migrate
 # Collecting static files, at least for admin page
 python3 manage.py collectstatic --noinput
 
-exec gunicorn --bind 0.0.0.0:${APP_PORT} mandry.wsgi
+exec gunicorn --bind 0.0.0.0:${APP_PORT} mandry.wsgi --reload
