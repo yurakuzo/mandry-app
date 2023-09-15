@@ -12,6 +12,7 @@ class Traveller(AbstractUser):
     def __str__(self) -> str:
         return f"Traveller({self.email})"
 
+
 class Comment(models.Model):
     author = models.ForeignKey(Traveller, on_delete=models.CASCADE, related_name='comment_author')
     receiver = models.ForeignKey(Traveller, on_delete=models.CASCADE, related_name='comment_receiver')
