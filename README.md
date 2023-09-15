@@ -1,1 +1,1 @@
-# new-agregation-app
+# mandry-app
