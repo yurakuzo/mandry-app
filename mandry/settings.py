@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from news_agregator.config import Config as cfg
+from mandry.config import Config as cfg
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,6 +18,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'traveller',
 ]
 
 MIDDLEWARE = [
@@ -29,7 +31,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-ROOT_URLCONF = 'news_agregator.urls'
+ROOT_URLCONF = 'mandry.urls'
 
 TEMPLATES = [
     {
@@ -47,7 +49,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'news_agregator.wsgi.application'
+WSGI_APPLICATION = 'mandry.wsgi.application'
 
 DATABASES = {
     'default': {
@@ -75,6 +77,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'traveller.Traveller'
 
 LANGUAGE_CODE = 'en-us'
 

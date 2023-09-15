@@ -1,5 +1,5 @@
 """
-ASGI config for news_agregator project.
+ASGI config for mandry project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'news_agregator.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mandry.settings')
 
 application = get_asgi_application()
