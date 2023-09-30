@@ -80,6 +80,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'traveller.Traveller'
+LOGOUT_REDIRECT_URL = 'main_page'
 
 LANGUAGE_CODE = 'en-us'
 
