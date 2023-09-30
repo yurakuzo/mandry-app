@@ -44,12 +44,12 @@ These instructions will get you a copy of the project up and running on your loc
    This command will build the Docker images and start the containers for the Django app, PostgreSQL database, and Nginx.
 
 4. **Access the Application:**
-   - Open your web browser and navigate to `http://localhost:8000`.
+   - Open your web browser and navigate to `http://localhost`.
 
 5. **Create a Superuser:**
    - In order to access the Django admin interface, you'll need to create a superuser account.
    - The `entrypoint.sh` script creates a default superuser with username `admin` and password `admin`.
-   - You can log in to the Django admin interface at `http://localhost:8000/admin` using these credentials.
+   - You can log in to the Django admin interface at `http://localhost/admin` using these credentials.
 
 ## Features
 
