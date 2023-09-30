@@ -13,6 +13,7 @@ class Traveller(AbstractUser):
         ]
     )
     email = models.EmailField(db_index=True, unique=True)
+    image = models.FileField(upload_to='profile_images/', default='profile_images/default-image.jpg')
     rating = models.FloatField(default=0)
 
     def __str__(self) -> str:
