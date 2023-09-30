@@ -13,3 +13,7 @@ python3 manage.py migrate
 python3 manage.py collectstatic --noinput
 
 exec gunicorn --bind 0.0.0.0:${APP_PORT} mandry.wsgi --reload
+
+echo "Creating superuser admin"
+python manage.py createsuperuser --no-input --username admin --email admin@example.com
+echo "from django.contrib.auth import get_user_model; User = get_user_model(); user = User.objects.get(username='admin'); user.set_password('admin'); user.save()" | python manage.py shell
