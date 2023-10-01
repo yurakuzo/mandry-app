@@ -1,6 +1,6 @@
 from django.test import TestCase
-from django.core.exceptions import ValidationError
 from .models import Traveller, Comment
+
 
 class TravellerModelTest(TestCase):
 
@@ -60,4 +60,3 @@ class CommentModelTest(TestCase):
             receiver=self.receiver
         )
         self.assertEqual(str(comment), f'Comment({self.receiver}:{self.author})')
-
