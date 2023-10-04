@@ -1,6 +1,5 @@
 body {
   font-family: Arial, sans-serif;
-  padding: 20px;
   margin: 0;
   font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
@@ -10,22 +9,16 @@ body {
   text-align: var(--bs-body-text-align);
   background-color: var(--bs-body-bg);
   display: flex;
-  flex-direction:column;
-}
-
-form {
-    margin-top: 20px;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .profileImage {
+  margin-top: 30px;
     max-width: 150px;
     max-height: 150px;
     border-radius: 50%;
     object-fit: cover;
-}
-
-footer {
-  min-height:50px;
 }
 
 .mandry-logo {
@@ -34,3 +27,19 @@ footer {
   border-radius: 50%;
   object-fit: cover;
 }
+
+nav.navbar {
+  background-color: rgb(180, 240, 221);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.footer {
+  min-height:50px;
+  margin-top: auto;
+}
+
