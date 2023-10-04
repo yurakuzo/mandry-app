@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import SignUpForm
 from django.contrib.auth import login
 
+
 class SignUpView(generic.CreateView):
     form_class = SignUpForm
     success_url = reverse_lazy('main_page')
@@ -14,6 +15,7 @@ class SignUpView(generic.CreateView):
         response = super().form_valid(form)
         login(self.request, self.object)
         return response
+
 
 class ProfileView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'traveller/profile.html'
