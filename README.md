@@ -93,4 +93,4 @@ pip install flake8
 flake8 .
 ```
 
-This command will check the code in the current directory and output any errors or warnings
+This command will check the code in the current directory and output any errors or warnings.
