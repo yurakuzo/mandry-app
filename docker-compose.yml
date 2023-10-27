@@ -16,10 +16,10 @@ services:
 
   app:
     build: .
-    entrypoint: ["/entrypoint.sh"]
+    # entrypoint: ["/entrypoint.sh"]
     env_file:
       - .env
-    command: ./entrypoint.sh
+    # command: ./entrypoint.sh
     volumes:
       - .:/code
     ports:
