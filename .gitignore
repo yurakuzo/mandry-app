@@ -160,4 +160,5 @@ cython_debug/
 #.idea/
 
 static/admin
+static/rest_framework
 venv
