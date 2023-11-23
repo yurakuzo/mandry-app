@@ -1,24 +1,17 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  font-family: var(--bs-body-font-family);
-  font-size: var(--bs-body-font-size);
-  font-weight: var(--bs-body-font-weight);
-  line-height: var(--bs-body-line-height);
-  color: var(--bs-body-color);
-  text-align: var(--bs-body-text-align);
-  background-color: var(--bs-body-bg);
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100%;
+
 }
 
 .profileImage {
-  margin-top: 30px;
-    max-width: 150px;
-    max-height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .mandry-logo {
@@ -33,13 +26,70 @@ nav.navbar {
 }
 
 body {
+  font-family: Arial, sans-serif;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100vh; /* Ensure that the body is at least the height of the viewport */
 }
 
-.footer {
-  min-height:50px;
+.form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form .btn {
+  width: 100%;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000; /* Ensure header is above other content */
+} 
+footer {
+  position: relative; /* Needed for absolute positioning inside */
   margin-top: auto;
+  color: white; /* For white text */
+  text-align: center;
+  font-weight: bold; /* Make the text bold */
+  /* If you want to blur the background image: */
+  /* backdrop-filter: blur(8px); */
+}
+
+  main {
+    flex-grow: 1; /* Allows main to grow and push footer down */
+    padding-top: 80px; /* Adjust as needed */
+}
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url('/static/traveller/img/footer.png'); /* Correct the path */
+  background-size: cover;
+  background-position: center;
+  filter: blur(4px); /* Apply blur to the image itself */
+  z-index: -1;
+}
+.footer-background {
+  position: relative; /* This makes the pseudo-element position relative to the footer */
+  overflow: hidden; /* Ensures the blur doesn't bleed outside the footer */
+}
+.footer-text {
+  font-weight: bold; /* This will make the text bold */
+  /* Or use a numeric value like 600, 700 (equivalent to 'bold'), 800, etc. to specify the weight */
 }
 

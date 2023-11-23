@@ -37,6 +37,9 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
     environment:
       - APP_PORT=${APP_PORT}
+    depends_on:
+     - app
+     - db
     networks:
       - mandry
 

@@ -5,8 +5,11 @@ from django.views.generic import RedirectView
 from django.conf.urls.static import static
 from mandry.views import MainPageView
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('api.urls')),
+    path('trip/', include('trip.urls')),
     path('favicon.ico', RedirectView.as_view(url='/media/favicon.ico')),
     path('accounts/', include('traveller.urls')),
     path('', MainPageView.as_view(), name='main_page'),

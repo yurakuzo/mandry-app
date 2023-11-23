@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="mb-4">My Trips</h1>
+        {% if user_trips %}
+            <div class="row">
+                {% for trip in user_trips %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ trip.title }}</h5>
+                                <p class="card-text">{{ trip.description }}</p>
+                                <p class="card-text"><small class="text-muted">Start Date: {{ trip.start_date|date:"Y-m-d" }}</small></p>
+                                <!-- Add other fields here -->
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No trips found.</p>
+        {% endif %}
+    </div>
+{% endblock %}
