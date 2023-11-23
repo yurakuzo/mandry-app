@@ -4,7 +4,7 @@ from traveller.models import Traveller, Comment
 
 @admin.register(Traveller)
 class TravellerAdmin(admin.ModelAdmin):
-    list_display = ['id', 'first_name', 'last_name', 'phone_number', 'email', 'rating']
+    list_display = ['id', 'first_name', 'last_name', 'phone_number', 'email']
 
 
 @admin.register(Comment)

@@ -15,7 +15,7 @@ RUN python3 -m pip install --upgrade pip
 
 COPY . /code/
 
-EXPOSE ${APP_PORT}
+EXPOSE $APP_PORT
 
 COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
