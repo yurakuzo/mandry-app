@@ -17,7 +17,7 @@ COPY . /code/
 
 EXPOSE $APP_PORT
 
-COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY ./entrypoint.sh .
+RUN chmod +x ./entrypoint.sh
 
-RUN rm -rf /var/cache/apk/*
+ENTRYPOINT ./entrypoint.sh
