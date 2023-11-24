@@ -14,7 +14,7 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = '__all__'
-        
+
 
 class TripSerializer(serializers.ModelSerializer):
     class Meta:

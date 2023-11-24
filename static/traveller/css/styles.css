@@ -3,6 +3,8 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  height: 100%;
+
 }
 
 .profileImage {
@@ -24,8 +26,11 @@ nav.navbar {
 }
 
 body {
+  font-family: Arial, sans-serif;
+  margin: 0;
   display: flex;
   flex-direction: column;
+  min-height: 100vh; /* Ensure that the body is at least the height of the viewport */
 }
 
 .form {
@@ -48,6 +53,43 @@ body {
 
 header {
   position: fixed;
-  overflow: scroll;
+  width: 100%;
   top: 0;
+  z-index: 1000; /* Ensure header is above other content */
+} 
+footer {
+  position: relative; /* Needed for absolute positioning inside */
+  margin-top: auto;
+  color: white; /* For white text */
+  text-align: center;
+  font-weight: bold; /* Make the text bold */
+  /* If you want to blur the background image: */
+  /* backdrop-filter: blur(8px); */
 }
+
+  main {
+    flex-grow: 1; /* Allows main to grow and push footer down */
+    padding-top: 80px; /* Adjust as needed */
+}
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url('/static/traveller/img/footer.png'); /* Correct the path */
+  background-size: cover;
+  background-position: center;
+  filter: blur(4px); /* Apply blur to the image itself */
+  z-index: -1;
+}
+.footer-background {
+  position: relative; /* This makes the pseudo-element position relative to the footer */
+  overflow: hidden; /* Ensures the blur doesn't bleed outside the footer */
+}
+.footer-text {
+  font-weight: bold; /* This will make the text bold */
+  /* Or use a numeric value like 600, 700 (equivalent to 'bold'), 800, etc. to specify the weight */
+}
+

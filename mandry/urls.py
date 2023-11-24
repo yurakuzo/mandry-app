@@ -13,7 +13,9 @@ urlpatterns = [
     path('favicon.ico', RedirectView.as_view(url='/media/favicon.ico')),
     path('accounts/', include('traveller.urls')),
     path('', MainPageView.as_view(), name='main_page'),
+    path('trips/', include('trip.urls'))
 ]
+
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

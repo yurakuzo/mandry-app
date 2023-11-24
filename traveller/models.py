@@ -15,11 +15,11 @@ class Traveller(AbstractUser):
     )
     email = models.EmailField(db_index=True, unique=True)
     image = models.FileField(upload_to='profile_images/', default='profile_images/default-image.jpg')
-    
+
     @property
     def user_comments(self):
         return self.comment_receiver.all()
-    
+
     @property
     def user_rating(self):
         average_rating = self.comment_receiver.aggregate(avg_rating=Avg('rating'))['avg_rating']

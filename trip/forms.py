@@ -3,18 +3,17 @@ from trip.models import Trip
 
 
 class TripCreationForm(forms.ModelForm):
-    # start_date = forms.DateTimeField(widget=forms.DateTimeInput)
     class Meta:
         model = Trip
         fields = ['title', 'destination', 'description', 'max_passangers', 'start_date']
         widgets = {
-            'start_date': forms.DateTimeField
+            'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),  # Corrected widget
         }
-        
+
     def save(self, **kwargs):
-        user = kwargs.pop('user')
-        instance = super(TripCreationForm, self).save(**kwargs)
-        instance.user = user
+        user = kwargs.pop('user', None)
+        instance = super().save(commit=False)  # Calling super with commit=False
+        if user:
+            instance.initiator = user  # Assuming initiator is the field to link to the user
         instance.save()
         return instance
-
