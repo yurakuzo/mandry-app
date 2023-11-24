@@ -14,7 +14,7 @@ class TravellerViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    
+
     def create(self, request, *args, **kwargs):
         author = request.user
         receiver_id = request.data.get('receiver')

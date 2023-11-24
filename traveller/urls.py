@@ -4,8 +4,6 @@ from traveller.views import (
     SignUpView,
     ProfileView
 )
-from trip.views import MyTripsView
-
 
 
 urlpatterns = [

@@ -1,11 +1,11 @@
 from django.shortcuts import render # noqa:disable=f401
-from django.views import View, generic
+from django.views import generic
 from trip.models import Trip
 from django.urls import reverse_lazy
 from trip.forms import TripCreationForm
 from django.views.generic.list import ListView
-from .models import Trip
-#1231123111111123
+
+
 class MyTripsView(ListView):
     model = Trip
     template_name = 'trip/trip.html'
@@ -16,6 +16,7 @@ class MyTripsView(ListView):
             return Trip.objects.filter(initiator=self.request.user)
         else:
             return Trip.objects.none()
+
 
 class TripCreationView(generic.CreateView):
     form_class = TripCreationForm
