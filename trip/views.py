@@ -6,6 +6,7 @@ from trip.forms import TripCreationForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
+
 class MyTripsView(ListView):
     model = Trip
     template_name = 'trip/trip.html'
@@ -16,7 +17,6 @@ class MyTripsView(ListView):
             return Trip.objects.filter(initiator=self.request.user)
         else:
             return Trip.objects.none()
-   
 
 
 class TripCreationView(generic.CreateView):
