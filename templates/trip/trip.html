@@ -9,9 +9,13 @@
                     <div class="col-md-4 mb-3">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">{{ trip.title }}</h5>
+                                <h5 class="card-title">
+                                    <a href="{% url 'trip_detail' pk=trip.pk %}">{{ trip.title }}</a>
+                                </h5>
                                 <p class="card-text">{{ trip.description }}</p>
-                                <p class="card-text"><small class="text-muted">Start Date: {{ trip.start_date|date:"Y-m-d" }}</small></p>
+                                <p class="card-text">
+                                    <small class="text-muted">Start Date: {{ trip.start_date|date:"Y-m-d" }}</small>
+                                </p>
                                 <!-- Add other fields here -->
                             </div>
                         </div>

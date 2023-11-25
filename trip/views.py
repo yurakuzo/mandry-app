@@ -4,6 +4,7 @@ from trip.models import Trip
 from django.urls import reverse_lazy
 from trip.forms import TripCreationForm
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 
 class MyTripsView(ListView):
@@ -29,3 +30,9 @@ class TripCreationView(generic.CreateView):
         form.instance.initiator = self.request.user
         # Call the super class form_valid to save the form and redirect to success_url
         return super(TripCreationView, self).form_valid(form)
+
+
+class TripDetailView(DetailView):
+    model = Trip
+    template_name = 'trip/trip_detail.html'
+    context_object_name = 'trip_detail'
