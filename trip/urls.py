@@ -9,4 +9,3 @@ urlpatterns = [
     path("create-trip/", TripCreationView.as_view(), name="create_trip"),
     path('trips/<int:pk>/', TripDetailView.as_view(), name='trip_detail')
 ]
-#123123123
