@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from trip.forms import TripCreationForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.shortcuts import redirect
 
 
 class MyTripsView(ListView):
@@ -35,4 +36,19 @@ class TripCreationView(generic.CreateView):
 class TripDetailView(DetailView):
     model = Trip
     template_name = 'trip/trip_detail.html'
-    context_object_name = 'trip_detail'
+
+    def post(self, request, *args, **kwargs):
+        trip = self.get_object()
+        if 'join' in request.POST:
+            trip.join_trip(request.user)
+            return redirect("all_trips")
+        elif 'leave' in request.POST:
+            trip.leave_trip(request.user)
+            return redirect("all_trips")
+        return render(request, self.template_name, trip)
+
+
+class AllTripsView(ListView):
+    model = Trip
+    template_name = 'trip/all_trips.html'  # Specify your template here
+    context_object_name = 'all_trips'
