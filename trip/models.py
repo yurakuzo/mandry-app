@@ -7,6 +7,7 @@ DIFFICULTY_CHOICES = [
         ('hard', 'Hard'),
     ]
 
+
 class Trip(models.Model):
     title = models.CharField(max_length=35, default="Trip")
     destination = models.CharField(max_length=70, default="Destination")

@@ -1,4 +1,4 @@
-from django.shortcuts import render # noqa:disable=f401
+from django.shortcuts import render
 from django.views import generic
 from trip.models import Trip
 from django.urls import reverse_lazy
@@ -6,20 +6,8 @@ from trip.forms import TripCreationForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.shortcuts import redirect
-from django.http import JsonResponse
-from django.db.models import Q
-from .models import Trip
 
-def search_trips(request):
-    query = request.GET.get('q', '')
-    if query:
-        trips = Trip.objects.filter(
-            Q(title__icontains=query) |
-            Q(destination__icontains=query) |
-            Q(initiator__username__icontains=query)
-        ).values('id', 'title', 'destination')  # Adjust fields as needed
-        return JsonResponse(list(trips), safe=False)
-    return JsonResponse([])
+
 class MyTripsView(ListView):
     model = Trip
     template_name = 'trip/my_trip.html'
@@ -30,6 +18,7 @@ class MyTripsView(ListView):
             return Trip.objects.filter(initiator=self.request.user)
         else:
             return Trip.objects.none()
+
 
 class TripCreationView(generic.CreateView):
     form_class = TripCreationForm
@@ -59,32 +48,7 @@ class TripDetailView(DetailView):
         return render(request, self.template_name, trip)
 
 
-from django.db.models import Count, Q
-
 class AllTripsView(ListView):
     model = Trip
     template_name = 'trip/trip.html'
     context_object_name = 'all_trips'
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        sort = self.request.GET.get('sort')
-        search_query = self.request.GET.get('search')
-
-        if search_query:
-            queryset = queryset.filter(
-                Q(title__icontains=search_query) | 
-                Q(initiator__username__icontains=search_query)
-            )
-
-        if sort:
-            if sort == "travelers_asc":
-                queryset = queryset.annotate(num_travelers=Count('passengers')).order_by('num_travelers')
-            elif sort == "travelers_desc":
-                queryset = queryset.annotate(num_travelers=Count('passengers')).order_by('-num_travelers')
-            elif sort in ["title", "-title"]:
-                queryset = queryset.order_by(sort)
-
-        return queryset
-
-  
