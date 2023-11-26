@@ -8,7 +8,6 @@ from django.views.generic.detail import DetailView
 from django.shortcuts import redirect
 
 
-
 class MyTripsView(ListView):
     model = Trip
     template_name = 'trip/trip.html'
@@ -37,6 +36,7 @@ class TripCreationView(generic.CreateView):
 class TripDetailView(DetailView):
     model = Trip
     template_name = 'trip/trip_detail.html'
+
     def post(self, request, *args, **kwargs):
         trip = self.get_object()
         if 'join' in request.POST:

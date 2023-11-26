@@ -15,6 +15,7 @@ class Trip(models.Model):
 
     def __str__(self) -> str:
         return f"Trip({self.initiator};{len(self.passangers.all())})"
+
     def save(self, *args, **kwargs):
         is_new = self._state.adding
         super(Trip, self).save(*args, **kwargs)
