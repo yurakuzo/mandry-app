@@ -5,7 +5,7 @@
         <h1>{{ trip.title }}</h1>
         <p><strong>Destination:</strong> {{ trip.destination }}</p>
         <p><strong>Description:</strong> {{ trip.description }}</p>
-        <p><strong>Max Passengers:</strong> {{ trip.max_passangers }}</p>
+        <p><strong>Max Passengers:</strong> {{ trip.max_passengers }}</p>
         <p><strong>Start Date:</strong> {{ trip.start_date|date:"Y-m-d H:i" }}</p>
         <p><strong>Passengers:</strong> {{ trip.passengers.all|join:", " }}</p>
         

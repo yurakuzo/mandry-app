@@ -5,7 +5,7 @@ from trip.models import Trip
 class TripCreationForm(forms.ModelForm):
     class Meta:
         model = Trip
-        fields = ['title', 'destination', 'description', 'max_passangers', 'start_date']
+        fields = ['title', 'destination', 'description', 'max_passengers', 'start_date']
         widgets = {
             'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),  # Corrected widget
         }

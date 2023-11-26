@@ -1,4 +1,4 @@
-from django.shortcuts import render # noqa:disable=f401
+from django.shortcuts import render
 from django.views import generic
 from trip.models import Trip
 from django.urls import reverse_lazy
@@ -10,7 +10,7 @@ from django.shortcuts import redirect
 
 class MyTripsView(ListView):
     model = Trip
-    template_name = 'trip/trip.html'
+    template_name = 'trip/my_trip.html'
     context_object_name = 'user_trips'
 
     def get_queryset(self):
@@ -50,5 +50,5 @@ class TripDetailView(DetailView):
 
 class AllTripsView(ListView):
     model = Trip
-    template_name = 'trip/all_trips.html'  # Specify your template here
+    template_name = 'trip/trip.html'
     context_object_name = 'all_trips'

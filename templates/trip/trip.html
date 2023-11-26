@@ -1,29 +1,85 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
     <div class="container mt-4">
-        <h1 class="mb-4">My Trips</h1>
-        {% if user_trips %}
-            <div class="row">
-                {% for trip in user_trips %}
-                    <div class="col-md-4 mb-3">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="{% url 'trip_detail' pk=trip.pk %}">{{ trip.title }}</a>
-                                </h5>
-                                <p class="card-text">{{ trip.description }}</p>
-                                <p class="card-text">
-                                    <small class="text-muted">Start Date: {{ trip.start_date|date:"Y-m-d" }}</small>
-                                </p>
-                                <!-- Add other fields here -->
-                            </div>
+        <h1 class="mb-4">All Trips</h1>
+
+        <div class="search mb-3">
+            <input type="text" id="search-input" placeholder="Search by name or username" class="form-control">
+        </div>
+
+
+        
+        <div id="search-results" class="row"></div>
+
+        <!-- Static Display of Trips (hide this div when search is active) -->
+        <div id="static-trips-list" class="row">
+            {% for trip in all_trips %}
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{% url 'trip_detail' pk=trip.pk %}">{{ trip.title }}</a>
+                            </h5>
+                            <p class="card-text">{{ trip.description }}</p>
+                            <p class="card-text">
+                                <small class="text-muted">Start Date: {{ trip.start_date|date:"Y-m-d" }}</small>
+                            </p>
                         </div>
                     </div>
-                {% endfor %}
-            </div>
-        {% else %}
-            <p>No trips found.</p>
-        {% endif %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
+
+{% block scripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchInput = document.getElementById('search-input');
+            var searchResults = document.getElementById('search-results');
+            var staticTripsList = document.getElementById('static-trips-list');
+
+            searchInput.addEventListener('keyup', function() {
+                var query = this.value.toLowerCase();
+
+                fetch(`/api/trips/`) // Assuming this endpoint returns all trips
+                    .then(response => response.json())
+                    .then(data => {
+                        searchResults.innerHTML = ''; // Clear previous results
+                        staticTripsList.style.display = query ? 'none' : 'block'; // Hide or show the static list
+
+                        data.forEach(trip => {
+                            var tripDate = new Date(trip.start_date).toLocaleDateString();
+                            if (trip.title.toLowerCase().includes(query) || 
+                                trip.destination.toLowerCase().includes(query) ||
+                                tripDate.includes(query)) {
+                                var div = document.createElement('div');
+                                div.className = 'col-md-4 mb-3';
+                                div.innerHTML = `
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <a href="/trips/${trip.id}/">${trip.title}</a>
+                                            </h5>
+                                            <p class="card-text">${trip.description}</p>
+                                            <p class="card-text">
+                                                <small class="text-muted">Start Date: ${tripDate}</small>
+                                            </p>
+                                        </div>
+                                    </div>`;
+                                searchResults.appendChild(div);
+                            }
+                        });
+
+                        if (searchResults.innerHTML === '') {
+                            searchResults.innerHTML = '<p>No trips found matching the search criteria.</p>';
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
+{% endblock %}
+
