@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1>My Trips</h1>
+
+        {% if user_trips %}
+            <div class="row">
+                {% for trip in user_trips %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{% url 'trip_detail' pk=trip.pk %}">{{ trip.title }}</a>
+                                </h5>
+                                <p class="card-text">{{ trip.description }}</p>
+                                <p class="card-text"><small class="text-muted">Start Date: {{ trip.start_date|date:"Y-m-d" }}</small></p>
+                                <!-- Add other trip details here -->
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>You have not created or joined any trips yet.</p>
+        {% endif %}
+    </div>
+{% endblock %}
