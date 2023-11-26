@@ -2,22 +2,24 @@
 
 {% block content %}
     <div class="container mt-4">
-        <div class="card">
-            <div class="card-header">
-                <h1 class="card-title">{{ trip_detail.title }}</h1>
-            </div>
-            <div class="card-body">
-                <h5 class="card-subtitle mb-2 text-muted">Destination</h5>
-                <p class="card-text">{{ trip_detail.destination }}</p>
+        <h1>{{ trip.title }}</h1>
+        <p><strong>Destination:</strong> {{ trip.destination }}</p>
+        <p><strong>Description:</strong> {{ trip.description }}</p>
+        <p><strong>Max Passengers:</strong> {{ trip.max_passangers }}</p>
+        <p><strong>Start Date:</strong> {{ trip.start_date|date:"Y-m-d H:i" }}</p>
+        <p><strong>Passengers:</strong> {{ trip.passengers.all|join:", " }}</p>
+        
+        <!-- Add other fields here -->
+        <!-- Example: -->
+        <!-- <p><strong>Other Field:</strong> {{ trip.other_field }}</p> -->
 
-                <h5 class="card-subtitle mb-2 text-muted">Description</h5>
-                <p class="card-text">{{ trip_detail.description }}</p>
-
-                <!-- Add other fields here -->
-                <!-- Example: -->
-                <!-- <h5 class="card-subtitle mb-2 text-muted">Start Date</h5> -->
-                <!-- <p class="card-text">{{ trip_detail.start_date|date:"Y-m-d" }}</p> -->
-            </div>
-        </div>
+        <form method="post">
+            {% csrf_token %}
+            {% if request.user in trip.passengers.all %}
+                <button type="submit" name="leave" class="btn btn-warning">Leave Trip</button>
+            {% else %}
+                <button type="submit" name="join" class="btn btn-success">Join Trip</button>
+            {% endif %}
+        </form>
     </div>
 {% endblock %}
