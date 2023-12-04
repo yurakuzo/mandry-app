@@ -50,6 +50,44 @@
               </div>
             </li>
 
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" id="homeDropdownMenuLink" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Site Settings
+              </a>
+              <div class="dropdown-menu" aria-labelledby="homeDropdownMenuLink">
+                {% if user.is_authenticated %}
+                  
+                  <div class="language-section dropdown-item">
+                    <label>Select Language:</label>
+                    <div>
+                      <input type="radio" id="english" name="language" value="en">
+                      <label for="english">English</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="spanish" name="language" value="ua">
+                      <label for="spanish">Ukrainian</label>
+                    </div>
+                  </div>
+                  <a class="dropdown-item" href="{% url 'create_trip' %}">Some other setting</a>
+                {% else %}
+                  
+                  <div class="language-section dropdown-item">
+                    <label>Select Language:</label>
+                    <div>
+                      <input type="radio" id="english" name="language" value="english">
+                      <label for="english">English</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="spanish" name="language" value="spanish">
+                      <label for="spanish">Ukrainian</label>
+                    </div>
+                  </div>
+                  <a class="dropdown-item" href="{% url 'login' %}">Some other setting</a>
+                {% endif %}
+              </div>
+            </li>
+            
+
             {% if user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'profile' pk=user.id %}">My Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log Out</a></li>
