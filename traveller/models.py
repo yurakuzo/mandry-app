@@ -1,13 +1,14 @@
 from django.db import models
 from django.db.models import Avg
 from django.contrib.auth.models import AbstractUser
-from django.core.validators import MinLengthValidator, MaxLengthValidator
+from django.core.validators import MinLengthValidator, MaxLengthValidator, MinValueValidator, MaxValueValidator
 
 
 class Traveller(AbstractUser):
     first_name = models.CharField('first_name', max_length=35)
     last_name = models.CharField('last_name', max_length=35)
     phone_number = models.CharField(
+        max_length=12,
         validators=[
             MinLengthValidator(10),
             MaxLengthValidator(12)
@@ -33,7 +34,13 @@ class Comment(models.Model):
     author = models.ForeignKey(Traveller, on_delete=models.CASCADE, related_name='comment_author')
     receiver = models.ForeignKey(Traveller, on_delete=models.CASCADE, related_name='comment_receiver')
     comment = models.TextField(blank=False, null=False, default='Comment example')
-    rating = models.FloatField(default=0)
+    rating = models.FloatField(
+        default=0,
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(5)
+        ]
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
