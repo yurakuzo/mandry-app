@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from traveller.views import (
     SignUpView,
-    ProfileDetailView
+    ProfileDetailView, update_profile, leave_comment
 )
 
 
@@ -21,4 +21,7 @@ urlpatterns = [
         name='password_change_done'
     ),
     path('profile/<int:pk>/', ProfileDetailView.as_view(), name='profile'),
+    path('update-profile/', update_profile, name='update_profile'),
+    path('leave-comment/<int:user_id>/', leave_comment, name='leave_comment'),
+
 ]
