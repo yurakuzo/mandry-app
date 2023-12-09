@@ -34,3 +34,10 @@ class Trip(models.Model):
 
     def leave_trip(self, user):
         self.passengers.remove(user)
+
+
+class Comment(models.Model):
+    trip = models.ForeignKey(Trip, related_name='comments', on_delete=models.CASCADE)
+    user = models.ForeignKey(Traveller, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)

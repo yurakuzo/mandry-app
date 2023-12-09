@@ -21,5 +21,29 @@
                 <button type="submit" name="join" class="btn btn-success">Join Trip</button>
             {% endif %}
         </form>
+
+        <!-- Comment Section -->
+        <div class="comments-area mt-5">
+            <h2>Comments</h2>
+            {% for comment in trip.comments.all %}
+                <div class="comment mb-3">
+                    <p><strong>{{ comment.user.username }}</strong> at {{ comment.created_at|date:"Y-m-d H:i" }} says:</p>
+                    <p>{{ comment.text }}</p>
+                </div>
+            {% empty %}
+                <p>No comments yet.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Comment Form -->
+        {% if user.is_authenticated %}
+            <form method="post" class="comment-form mt-4">
+                {% csrf_token %}
+                <textarea name="comment" class="form-control" placeholder="Leave a comment"></textarea>
+                <button type="submit" class="btn btn-primary mt-2">Post Comment</button>
+            </form>
+        {% else %}
+            <p><a href="{% url 'login' %}">Log in</a> to post a comment.</p>
+        {% endif %}
     </div>
 {% endblock %}

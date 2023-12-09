@@ -38,13 +38,11 @@
 
                 <a class="dropdown-item" href="{% url 'mytrips' %}">View my trips</a>
                 <a class="dropdown-item" href="{% url 'create_trip' %}">Create a trip</a>
-                <a class="dropdown-item" href="{% url 'all_trips' %}">View All Trips</a>
 
               
 
                 {% else %}
-                <a class="dropdown-item" href="{% url 'login' %}">View my trips</a>
-                <a class="dropdown-item" href="{% url 'login' %}">Create a trip</a>
+                <a class="dropdown-item" href="{% url 'all_trips' %}">View All Trips</a>
 
                 {% endif %}
               </div>
