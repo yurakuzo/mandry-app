@@ -7,10 +7,10 @@ from .forms import SignUpForm
 from django.contrib.auth import login
 from .forms import UpdateProfileForm
 from traveller.models import Traveller
-from django.shortcuts import get_object_or_404, redirect, render
-from .models import Traveller
+from django.shortcuts import get_object_or_404
 from .forms import CommentForm
 from django.contrib.auth.decorators import login_required
+
 
 class SignUpView(generic.CreateView):
     form_class = SignUpForm

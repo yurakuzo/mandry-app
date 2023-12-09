@@ -3,6 +3,7 @@ from django.db.models import Avg
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinLengthValidator, MaxLengthValidator, MinValueValidator, MaxValueValidator
 
+
 class Traveller(AbstractUser):
     first_name = models.CharField('first_name', max_length=35)
     last_name = models.CharField('last_name', max_length=35)
@@ -27,6 +28,7 @@ class Traveller(AbstractUser):
 
     def __str__(self) -> str:
         return f"Traveller({self.email})"
+
 
 class Comment(models.Model):
     author = models.ForeignKey(Traveller, on_delete=models.CASCADE, related_name='comment_author')

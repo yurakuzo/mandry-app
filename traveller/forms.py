@@ -1,7 +1,9 @@
 from django import forms  # noqa: disable=f401
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm
 from .models import Traveller
 from .models import Comment
+
+
 class SignUpForm(UserCreationForm):
     class Meta:
         model = Traveller
@@ -18,4 +20,3 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['comment', 'rating']
-        
