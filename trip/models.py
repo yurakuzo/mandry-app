@@ -1,5 +1,6 @@
 from django.db import models
 from traveller.models import Traveller
+from django.urls import reverse
 
 DIFFICULTY_CHOICES = [
         ('easy', 'Easy'),
@@ -35,9 +36,17 @@ class Trip(models.Model):
     def leave_trip(self, user):
         self.passengers.remove(user)
 
+    def get_absolute_url(self):
+        return reverse('trip_detail', kwargs={'pk': self.pk})
+
 
 class Comment(models.Model):
     trip = models.ForeignKey(Trip, related_name='comments', on_delete=models.CASCADE)
     user = models.ForeignKey(Traveller, on_delete=models.CASCADE)
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+class TripImage(models.Model):
+    trip = models.ForeignKey('Trip', related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='trip_images/', default="trip_images/default_trip_image.jpg")

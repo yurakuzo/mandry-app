@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Edit Trip</h4>
+            <form method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                    <div class="col-md-6 mb-3">
+                        {{ form.title.label_tag }}
+                        {{ form.title }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ form.destination.label_tag }}
+                        {{ form.destination }}
+                    </div>
+                
+
+                <div class="col-md-6 mb-3">
+                    {{ form.description.label_tag }}
+                    {{ form.description }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.max_passengers.label_tag }}
+                    {{ form.max_passengers }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.start_date.label_tag }}
+                    {{ form.start_date }}
+                </div>
+
+                <hr class="mb-4">
+                <h4 class="mb-3">Upload Images</h4>
+                <div class="mb-3">
+                    <label for="image">Trip Images</label>
+                    <input type="file" class="form-control" id="image" name="image" multiple>
+                </div>
+
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Update Trip</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block css %}
+<style>
+    .needs-validation .form-control {
+        margin-bottom: 15px;
+    }
+    .needs-validation .form-control:invalid {
+        border-color: #dc3545;
+    }
+    .needs-validation .form-control:valid {
+        border-color: #28a745;
+    }
+</style>
+{% endblock %}

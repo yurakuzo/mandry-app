@@ -1,5 +1,6 @@
 from django import forms
 from trip.models import Trip
+from trip.models import TripImage
 
 
 class TripCreationForm(forms.ModelForm):
@@ -17,3 +18,9 @@ class TripCreationForm(forms.ModelForm):
             instance.initiator = user  # Assuming initiator is the field to link to the user
         instance.save()
         return instance
+
+
+class TripImageForm(forms.ModelForm):
+    class Meta:
+        model = TripImage
+        fields = ['image']

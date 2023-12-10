@@ -6,6 +6,10 @@ from trip.forms import TripCreationForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.shortcuts import redirect
+from trip.forms import TripImageForm
+from trip.models import TripImage
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+import logging
 
 
 class MyTripsView(ListView):
@@ -20,17 +24,23 @@ class MyTripsView(ListView):
             return Trip.objects.none()
 
 
-class TripCreationView(generic.CreateView):
+logger = logging.getLogger(__name__)
+
+
+class TripCreationView(LoginRequiredMixin, generic.CreateView):
     form_class = TripCreationForm
     success_url = reverse_lazy('main_page')
     template_name = 'trip/create_trip.html'
     model = Trip
 
     def form_valid(self, form):
-        # Set the initiator to the user making the request
+        logger.info("Form is valid. Data: %s", form.cleaned_data)
         form.instance.initiator = self.request.user
-        # Call the super class form_valid to save the form and redirect to success_url
         return super(TripCreationView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        logger.error("Form is invalid. Errors: %s", form.errors)
+        return super(TripCreationView, self).form_invalid(form)
 
 
 class TripDetailView(DetailView):
@@ -66,3 +76,27 @@ def trip_details(request, trip_id):
         Comment.objects.create(trip=trip, user=request.user, text=comment_text)
         return redirect('trip_details', trip_id=trip_id)
     return render(request, 'trip_details.html', {'trip': trip})
+
+
+class TripUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = Trip
+    form_class = TripCreationForm
+    template_name = 'trip/edit_trip.html'
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        if self.request.POST:
+            data['images'] = TripImageForm(self.request.POST, self.request.FILES)
+        else:
+            data['images'] = TripImageForm()
+        return data
+
+    def form_valid(self, form):
+        self.object = form.save()
+        for img_file in self.request.FILES.getlist('image'):
+            TripImage.objects.create(trip=self.object, image=img_file)
+        return super().form_valid(form)
+
+    def test_func(self):
+        trip = self.get_object()
+        return self.request.user == trip.initiator

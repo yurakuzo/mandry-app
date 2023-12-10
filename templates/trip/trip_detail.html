@@ -1,49 +1,107 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="container mt-4">
-        <h1 class="display-4 mb-4">{{ trip.title }}</h1>
-        <p class="lead"><strong>Destination:</strong> {{ trip.destination }}</p>
-        <p>{{ trip.description }}</p>
-        <p><strong>Max Passengers:</strong> {{ trip.max_passengers }}</p>
-        <p><strong>Start Date:</strong> {{ trip.start_date|date:"Y-m-d H:i" }}</p>
-        <p><strong>Passengers ({{ trip.passengers.count }}):</strong> 
-            {% for passenger in trip.passengers.all %}
-                <a href="{% url 'profile' pk=passenger.pk %}" class="badge badge-info">{{ passenger.username }}</a>
-            {% endfor %}
-        </p>
-
-        <form method="post" class="mt-4">
-            {% csrf_token %}
-            {% if request.user in trip.passengers.all %}
-                <button type="submit" name="leave" class="btn btn-warning">Leave Trip</button>
+<div class="container mt-5">
+    <h1 class="display-4 mb-4 text-center">{{ trip.title }}</h1>
+    <div class="row mb-4">
+        <!-- Carousel for Images -->
+        <div class="col-lg-8 mb-4">
+            {% if trip.images.all %}
+                <div id="tripCarousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for image in trip.images.all %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ image.image.url }}" class="d-block w-100" alt="Trip Image">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev" href="#tripCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#tripCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
             {% else %}
-                <button type="submit" name="join" class="btn btn-success">Join Trip</button>
+                <p>No images available.</p>
             {% endif %}
-        </form>
+        </div>
 
-        <!-- Comment Section -->
-        <div class="comments-area mt-5">
-            <h2>Comments</h2>
+        <!-- Trip Details -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <p class="lead"><strong>Destination:</strong> {{ trip.destination }}</p>
+                    <p>{{ trip.description }}</p>
+                    <p><strong>Max Passengers:</strong> {{ trip.max_passengers }}</p>
+                    <p><strong>Start Date:</strong> {{ trip.start_date|date:"Y-m-d H:i" }}</p>
+                    <p><strong>Passengers ({{ trip.passengers.count }}):</strong> 
+                        {% for passenger in trip.passengers.all %}
+                            <a href="{% url 'profile' pk=passenger.pk %}" class="badge badge-info">{{ passenger.username }}</a>
+                        {% endfor %}
+                    </p>
+                    <hr>
+                    <!-- Action buttons -->
+                    <form method="post">
+                        {% csrf_token %}
+                        {% if request.user in trip.passengers.all %}
+                            <button type="submit" name="leave" class="btn btn-warning btn-block">Leave Trip</button>
+                        {% else %}
+                            <button type="submit" name="join" class="btn btn-success btn-block">Join Trip</button>
+                        {% endif %}
+                    </form>
+                    {% if request.user == trip.initiator %}
+                        <a href="{% url 'edit_trip' trip.id %}" class="btn btn-primary btn-block mt-2">Edit this Trip</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <h2 class="mb-4">Comments</h2>
+        <div class="comments-list">
             {% for comment in trip.comments.all %}
-                <div class="comment mb-3">
-                    <p><strong>{{ comment.user.username }}</strong> at {{ comment.created_at|date:"Y-m-d H:i" }} says:</p>
-                    <p>{{ comment.text }}</p>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ comment.user.username }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ comment.created_at|date:"Y-m-d H:i" }}</h6>
+                        <p class="card-text">{{ comment.text }}</p>
+                    </div>
                 </div>
             {% empty %}
                 <p>No comments yet.</p>
             {% endfor %}
         </div>
-
+    
         <!-- Comment Form -->
         {% if user.is_authenticated %}
-            <form method="post" class="comment-form mt-4">
-                {% csrf_token %}
-                <textarea name="comment" class="form-control" placeholder="Leave a comment"></textarea>
-                <button type="submit" class="btn btn-primary mt-2">Post Comment</button>
-            </form>
+            <div class="comment-form mt-4">
+                <h4>Add a Comment</h4>
+                <form method="post" class="form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea name="comment" class="form-control" rows="3" placeholder="Your comment"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post Comment</button>
+                </form>
+            </div>
         {% else %}
-            <p><a href="{% url 'login' %}">Log in</a> to post a comment.</p>
+            <p class="mt-4"><a href="{% url 'login' %}">Log in</a> to post a comment.</p>
         {% endif %}
     </div>
-{% endblock %}
+    
+    {% endblock %}
+    
+    {% block css %}
+    <style>
+        .comments-list .card {
+            margin-bottom: 15px;
+        }
+        .comment-form textarea {
+            margin-bottom: 10px;
+        }
+    </style>
+    {% endblock %}
