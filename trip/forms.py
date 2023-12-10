@@ -17,7 +17,7 @@ class TripCreationForm(forms.ModelForm):
             instance.initiator = user
         instance.save()
         return instance
-    
+
 
 class UpdateTripForm(forms.ModelForm):
     class Meta:

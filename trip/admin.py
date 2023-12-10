@@ -6,4 +6,5 @@ from trip.models import Trip, TripImage
 class TripAdmin(admin.ModelAdmin):
     list_display = ['id', 'title', 'destination', 'initiator', 'start_date']
 
+
 admin.site.register(TripImage)

@@ -38,7 +38,7 @@ class Trip(models.Model):
 
     def get_absolute_url(self):
         return reverse('trip_detail', kwargs={'pk': self.pk})
-    
+
 
 class TripImage(models.Model):
     trip = models.ForeignKey(Trip, related_name='images', on_delete=models.CASCADE)

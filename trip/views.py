@@ -6,7 +6,6 @@ from trip.forms import TripCreationForm, TripImageForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.shortcuts import redirect
-from trip.forms import UpdateTripForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
