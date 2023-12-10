@@ -38,6 +38,14 @@ class Trip(models.Model):
 
     def get_absolute_url(self):
         return reverse('trip_detail', kwargs={'pk': self.pk})
+    
+
+class TripImage(models.Model):
+    trip = models.ForeignKey(Trip, related_name='images', on_delete=models.CASCADE)
+    image = models.FileField(upload_to='trip_images/')
+
+    def __str__(self):
+        return f"Image for {self.trip.title}"
 
 
 class Comment(models.Model):
@@ -45,8 +53,3 @@ class Comment(models.Model):
     user = models.ForeignKey(Traveller, on_delete=models.CASCADE)
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-
-
-class TripImage(models.Model):
-    trip = models.ForeignKey('Trip', related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='trip_images/', default="trip_images/default_trip_image.jpg")

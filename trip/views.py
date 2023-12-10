@@ -1,15 +1,13 @@
 from django.shortcuts import render
 from django.views import generic
-from trip.models import Trip, Comment
+from trip.models import Trip, Comment, TripImage
 from django.urls import reverse_lazy
-from trip.forms import TripCreationForm
+from trip.forms import TripCreationForm, TripImageForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.shortcuts import redirect
-from trip.forms import TripImageForm
-from trip.models import TripImage
+from trip.forms import UpdateTripForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-import logging
 
 
 class MyTripsView(ListView):
@@ -24,9 +22,6 @@ class MyTripsView(ListView):
             return Trip.objects.none()
 
 
-logger = logging.getLogger(__name__)
-
-
 class TripCreationView(LoginRequiredMixin, generic.CreateView):
     form_class = TripCreationForm
     success_url = reverse_lazy('main_page')
@@ -34,12 +29,10 @@ class TripCreationView(LoginRequiredMixin, generic.CreateView):
     model = Trip
 
     def form_valid(self, form):
-        logger.info("Form is valid. Data: %s", form.cleaned_data)
         form.instance.initiator = self.request.user
         return super(TripCreationView, self).form_valid(form)
 
     def form_invalid(self, form):
-        logger.error("Form is invalid. Errors: %s", form.errors)
         return super(TripCreationView, self).form_invalid(form)
 
 
@@ -52,13 +45,16 @@ class TripDetailView(DetailView):
         if 'join' in request.POST:
             trip.join_trip(request.user)
             return redirect("trip_detail", pk=trip.pk)
+
         elif 'leave' in request.POST:
             trip.leave_trip(request.user)
             return redirect("trip_detail", pk=trip.pk)
+
         elif 'comment' in request.POST and request.user.is_authenticated:
             comment_text = request.POST.get('comment')
             Comment.objects.create(trip=trip, user=request.user, text=comment_text)
             return redirect("trip_detail", pk=trip.pk)
+
         return render(request, self.template_name, {'trip': trip})
 
 
@@ -66,16 +62,6 @@ class AllTripsView(ListView):
     model = Trip
     template_name = 'trip/trip.html'
     context_object_name = 'all_trips'
-
-
-def trip_details(request, trip_id):
-    trip = Trip.objects.get(pk=trip_id)
-
-    if request.method == 'POST' and request.user.is_authenticated:
-        comment_text = request.POST.get('comment')
-        Comment.objects.create(trip=trip, user=request.user, text=comment_text)
-        return redirect('trip_details', trip_id=trip_id)
-    return render(request, 'trip_details.html', {'trip': trip})
 
 
 class TripUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
@@ -100,3 +86,14 @@ class TripUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView
     def test_func(self):
         trip = self.get_object()
         return self.request.user == trip.initiator
+
+
+def trip_details(request, trip_id):
+    trip = Trip.objects.get(pk=trip_id)
+
+    if request.method == 'POST' and request.user.is_authenticated:
+        comment_text = request.POST.get('comment')
+        Comment.objects.create(trip=trip, user=request.user, text=comment_text)
+        return redirect('trip_details', trip_id=trip_id)
+
+    return render(request, 'trip_details.html', {'trip': trip})

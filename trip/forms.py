@@ -1,6 +1,5 @@
 from django import forms
-from trip.models import Trip
-from trip.models import TripImage
+from trip.models import Trip, TripImage
 
 
 class TripCreationForm(forms.ModelForm):
@@ -8,16 +7,22 @@ class TripCreationForm(forms.ModelForm):
         model = Trip
         fields = ['title', 'destination', 'description', 'max_passengers', 'start_date']
         widgets = {
-            'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),  # Corrected widget
+            'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }
 
     def save(self, **kwargs):
         user = kwargs.pop('user', None)
-        instance = super().save(commit=False)  # Calling super with commit=False
+        instance = super().save(commit=False)
         if user:
-            instance.initiator = user  # Assuming initiator is the field to link to the user
+            instance.initiator = user
         instance.save()
         return instance
+    
+
+class UpdateTripForm(forms.ModelForm):
+    class Meta:
+        model = Trip
+        fields = ['title', 'destination', 'description', 'max_passengers', 'start_date', 'difficulty']
 
 
 class TripImageForm(forms.ModelForm):
