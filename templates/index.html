@@ -3,15 +3,78 @@
 {% block content %}
 
     <div class="text-center text-xxl-start">
-        <div class="fs-3 fw-light text-muted">просто. швидко. піде.</div>
-        <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">HELPIN` WITH YA TRIP</span></h1>
-        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
-            <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder mr-4" href="{% url "create_trip" %}">ШУКАЮ СУПУТНИКІВ</a>
-            <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="#">ОРГАНІЗОВУЮ ПОЇЗДКУ</a>
-        </div>
+        <div class="fs-3 fw-light text-muted">“Mandry - your way to adventure”</div>
+        <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">MANDRY</span></h1>
+        
     </div>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <div class="container mt-5 mb-4">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Індикатори слайдів -->
+            <ul class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ul>
     
+            <!-- Слайди -->
+            <div class="carousel-inner">
+                <!-- Слайд 1 -->
+                <div class="carousel-item active">
+                    <img src="static\traveller\img\photo_2023-12-12_19-44-28.jpg" class="d-block w-100" alt="Зображення 1">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Заголовок слайду 1</h5>
+                        <p>Текст слайду 1.</p>
+                    </div>
+                </div>
+    
+                <!-- Слайд 2 -->
+                <div class="carousel-item">
+                    <img src="static\traveller\img\photo_2023-12-12_19-44-32.jpg" class="d-block w-100" alt="Зображення 2">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Заголовок слайду 2</h5>
+                        <p>Текст слайду 2.</p>
+                    </div>
+                </div>
+    
+                <!-- Слайд 3 -->
+                <div class="carousel-item">
+                    <img src="static\traveller\img\photo_2023-12-12_19-44-35.jpg" class="d-block w-100" alt="Зображення 3">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Заголовок слайду 3</h5>
+                        <p>Текст слайду 3.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Кнопки переходу -->
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Попередній</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Наступний</span>
+            </a>
+        </div>
+    </div>
+    
+    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
+        <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder mr-4" href="{% url "create_trip" %}">ШУКАЮ СУПУТНИКІВ</a>
+        <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="#">ОРГАНІЗОВУЮ ПОЇЗДКУ</a>
+    </div>
+
+      <!-- Підключення скриптів Bootstrap JS та Popper.js -->
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      
+
+    
+
+  
 
     <!-- Features section-->
     <section class="py-5 border-bottom" id="features">
@@ -203,6 +266,9 @@
             </div>
         </div>
     </section>
+
+   
+
     <!-- Testimonials section-->
     <section class="py-5 border-bottom">
         <div class="container px-5 my-5 px-5">
@@ -240,6 +306,9 @@
             </div>
         </div>
     </section>
+
+    
+
     <section class="bg-light py-5">
         <div class="container px-5 my-5 px-5">
             <div class="text-center mb-5">
