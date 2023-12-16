@@ -1,0 +1,96 @@
+/* Header styling */
+.header {
+    font-size: 2.5rem;
+    color: #0d47a1; /* Change as needed */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.account-prompt {
+    text-align: center; /* Center align the prompt */
+    margin-top: 2rem; /* More space above the prompt */
+    font-size: 1.2rem; /* Slightly larger font size */
+    color: #0d47a1; /* Match the color scheme */
+}
+
+/* login page background */
+.login-page {
+    position: relative;
+    background: url('/media/background_images/background-login.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.login-page::before {
+    content: '';
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(177, 15, 15, 0.5); /* Dark overlay for better readability */
+    z-index: 0;
+}
+
+/* specific styles for login container */
+.login-container {
+    position: relative;
+    z-index: 1;
+    background: rgba(216, 192, 126, 0.445); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.356);
+    margin: auto; /* Center the form container */
+    max-width: 800px; /* Set a max-width for the form container */
+    padding: 40px 20px; /* Adjust padding if necessary */
+}
+
+/* Account creation prompt */
+.login-container h5 {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.login-container h5 a {
+    color: #0d47a1; /* Match with theme */
+    font-weight: bold;
+}
+
+.input-field {
+    margin-bottom: 20px; /* Add more space between fields */
+    background: rgba(255, 255, 255, 0.8); /* Light background for input fields */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px; /* Padding inside the fields */
+}
+
+.input-field input {
+    transition: all 0.3s ease; /* Smooth transition for all changes */
+}
+
+/* Style for input fields when they are focused */
+.input-field input:focus {
+    background: #9c8b2a94; /* Slightly different background on focus */
+    border: 2px solid #0d47a1; /* Blue border */
+    box-shadow: 0 0 5px #0d47a1; /* Soft shadow for emphasis */
+    transition: all 0.3s ease; /* Smooth transition for the effect */
+    height: 10rem; /* Increase input field height */
+    border-bottom: 2px solid #0d47a1; /* Thicker border on focus */
+    line-height: 3rem; /* Adjust line height to match */
+    padding: 10px 20px; /* Increase padding */
+    width: 100%; /* Optional: Increase width */
+}
+
+/* Input field adjustments */
+.input-field input:focus + label {
+    color: #0d47a1; /* Change color to ensure visibility */
+    font-size: 0.8rem; /* Adjust size */
+}
+
+/* Hide placeholder text when the user starts typing */
+.input-field input:not(:placeholder-shown) {
+    background: #fafafa; /* Background color when user starts typing */
+    /* Other styles if needed */
+}
+
+/* Hide placeholder text when the input is focused */
+.input-field input:focus::placeholder {
+    color: transparent; /* Makes placeholder text transparent on focus */
+}
