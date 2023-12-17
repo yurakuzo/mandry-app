@@ -1,5 +1,5 @@
 /* Header styling */
-.header {
+.login-header {
     font-size: 2.5rem;
     color: #0d47a1; /* Change as needed */
     text-align: center;
@@ -93,4 +93,28 @@
 /* Hide placeholder text when the input is focused */
 .input-field input:focus::placeholder {
     color: transparent; /* Makes placeholder text transparent on focus */
+}
+
+
+
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.1);
+    transform: scaleY(0);
+    transform-origin: 50% 100%;
+    transition: transform 0.3s;
+}
+
+.btn:hover:before {
+    transform: scaleY(1);
 }
