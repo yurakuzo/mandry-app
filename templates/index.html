@@ -5,7 +5,7 @@
     <div class="text-center text-xxl-start">
         <div class="fs-3 fw-light text-muted">“Mandry - your way to adventure”</div>
         <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">MANDRY</span></h1>
-        
+
     </div>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -25,8 +25,7 @@
                 <div class="carousel-item active">
                     <img src="static\traveller\img\photo_2023-12-12_19-44-28.jpg" class="d-block w-100" alt="Зображення 1">
                     <div class="carousel-caption d-none d-md-block" style="background-color: #aef0dc; border: 1px solid #ccc; padding: 4px; border-radius: 10px; color: black; text-shadow: 2px 2px 4px #888888;">
-                        <h5>SEARCH FOR YOUR TRIP JOINT</h5>
-                        
+                        <h5>SEARCH FOR YOUR TRIP JOINT</h5>    
                     </div>
                 </div>
     
@@ -35,7 +34,6 @@
                     <img src="static\traveller\img\photo_2023-12-12_19-44-32.jpg" class="d-block w-100" alt="Зображення 2">
                     <div class="carousel-caption d-none d-md-block" style="background-color: #aef0dc; border: 1px solid #ccc; padding: 4px; border-radius: 10px; color: black; text-shadow: 2px 2px 4px #888888;">
                         <h5>MAKE YOUR ROUTES SAFE</h5>
-                        
                     </div>
                 </div>
     
@@ -58,8 +56,11 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Наступний</span>
             </a>
+
         </div>
     </div>
+    
+
     
 
 
@@ -67,6 +68,8 @@
         <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder mr-3" href={% url "all_trips" %}>JOIN A TRIP</a>
         <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href={% url "create_trip" %}>CREATE A TRIP</a>
     </div>
+
+
 
       <!-- Підключення скриптів Bootstrap JS та Popper.js -->
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -112,6 +115,33 @@
             </div>
         </div>
     </section>
+
+    <div class="row gx-5 align-items-center">
+        <div class="col-lg-6 order-lg-2">
+            <div class="p-5"><img class="img-fluid rounded-circle" src="/media/background_images/background-tips.png" alt="..."></div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+            <div class="p-5">
+                <h2 class="display-4">For those about to rock...</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6">
+                <div class="p-5"><img class="img-fluid rounded-circle" src="/media/background_images/background-login.png" alt="..."></div>
+            </div>
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <h2 class="display-4">We salute you!</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
     <!-- Pricing section-->
     <section class="bg-light py-5 border-bottom">
         <div class="container px-5 my-5">
@@ -375,6 +405,11 @@
                     </form>
                 </div>
             </div>
+
+            
+            
         </div>
+
+        
     </section>
 {% endblock %}
