@@ -10,8 +10,8 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    <div class="container mt-5 mb-4">
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div class="container mt-5 mb-4" >
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" >
             <!-- Індикатори слайдів -->
             <ul class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -20,7 +20,7 @@
             </ul>
     
             <!-- Слайди -->
-            <div class="carousel-inner">
+            <div class="carousel-inner" style="border-radius: 50px;">
                 <!-- Слайд 1 -->
                 <div class="carousel-item active">
                     <img src="static\traveller\img\photo_2023-12-12_19-44-28.jpg" class="d-block w-100" alt="Зображення 1">
@@ -64,7 +64,7 @@
     
 
 
-    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3" style="background-color: rgb(180, 240, 221); width: 100%; padding: 20px;">
+    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3" style="background-color: rgb(180, 240, 221); width: 100%; padding: 20px; border-radius: 50px;">
         <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder mr-3" href={% url "all_trips" %}>JOIN A TRIP</a>
         <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href={% url "create_trip" %}>CREATE A TRIP</a>
     </div>
@@ -87,30 +87,22 @@
             <div class="row gx-5">
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></i></div>
-                    <h2 class="h4 fw-bolder">Featured title</h2>
-                    <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-                    <a class="text-decoration-none" href="#!">
-                        Call to action
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
+                    <h2 class="h4 fw-bolder">Safety</h2>
+                    <p>Safety is paramount in travel. Mandry offers detailed information on routes, ensuring your journey is not just enjoyable but also safe.</p>
+                    
                 </div>
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></i></div>
-                    <h2 class="h4 fw-bolder">Featured title</h2>
-                    <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-                    <a class="text-decoration-none" href="#!">
-                        Call to action
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
+                    <h2 class="h4 fw-bolder">Travel</h2>
+                    <p>Travel is about shared experiences. Mandry fosters a sense of community by allowing users to plan and join group trips, enhancing the overall travel experience.</p>
+                    
                 </div>
                 <div class="col-lg-4">
                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></i></div>
-                    <h2 class="h4 fw-bolder">Featured title</h2>
-                    <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-                    <a class="text-decoration-none" href="#!">
-                        Call to action
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
+                    <h2 class="h4 fw-bolder">Community</h2>
+                    <p>Our platform is a hub for knowledge and experience sharing, allowing travelers to learn from each other and make informed decisions.
+                    </p>
+                    
                 </div>
             </div>
         </div>
@@ -122,8 +114,8 @@
         </div>
         <div class="col-lg-6 order-lg-1">
             <div class="p-5">
-                <h2 class="display-4">For those about to rock...</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                <h2 class="display-4">For those about to start...</h2>
+                <p>Our vision for Mandry goes beyond its current capabilities. We are working towards personalized recommendations, fostering online communities, organizing webinars, and much more, aiming to make Mandry a one-stop solution for all travel needs.</p>
             </div>
         </div>
     </div>
@@ -134,8 +126,8 @@
             </div>
             <div class="col-lg-6">
                 <div class="p-5">
-                    <h2 class="display-4">We salute you!</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                    <h2 class="display-4">We welcome you!</h2>
+                    <p>Mandry is more than just a platform - it is a community, a resource, and a companion for all your travel adventures. We invite you to join us on this exciting journey, to explore, learn, and experience the world like never before. Thank you for your attention and we look forward to embarking on this adventurous journey with you.</p>
                 </div>
             </div>
         </div>
@@ -143,7 +135,7 @@
     
 
     <!-- Pricing section-->
-    <section class="bg-light py-5 border-bottom">
+    <section class="bg-light py-5 border-bottom" style="border-radius: 50px;">
         <div class="container px-5 my-5">
             <div class="text-center mb-5">
                 <h2 class="fw-bolder">Pay as you grow</h2>
@@ -210,7 +202,7 @@
                                 </li>
                                 <li class="mb-2">
                                     <i class="bi bi-check text-primary"></i>
-                                    ur to 5 current trips
+                                    up to 5 current trips
                                 </li>
                                 <li class="mb-2">
                                     <i class="bi bi-check text-primary"></i>
@@ -282,7 +274,7 @@
 
     
 
-    <section class="bg-light py-5">
+    <section class="bg-light py-5" style="border-radius: 50px;">
         <div class="container px-5 my-5 px-5">
             <div class="text-center mb-5">
                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
@@ -342,7 +334,7 @@
                         <!-- an error submitting the form-->
                         <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                         <!-- Submit Button-->
-                        <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
+                        <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit" style="background-color: #b3a051; color: black;">Submit</button></div>
                     </form>
                 </div>
             </div>
