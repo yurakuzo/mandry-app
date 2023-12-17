@@ -1,70 +1,67 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1 class="display-4 mb-4 text-center">{{ trip.title }}</h1>
-    <div class="row mb-4">
-        <!-- Carousel for Images -->
-        <div class="col-lg-8 mb-4">
-            {% if trip.images.all %}
-                <div id="tripCarousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        {% for image in trip.images.all %}
-                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                            <img 
-                                src="{{ image.image.url }}"
-                                class="d-block w-100"
-                                alt="Trip Image"
-                                style="max-width: 150px; max-height: 150px; border-radius: 2%; object-fit: cover;"
-                            >
-                        </div>
-                        {% endfor %}
-                    </div>
-                    <a class="carousel-control-prev" href="#tripCarousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#tripCarousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            {% else %}
-                <img src="/media/trip_images/default_trip_image.jpg" class"d-block w-100" alt="Default Trip Image">
-            {% endif %}
-        </div>
+<div class="trip-details-container">
+    <div class="trip-details-page">
+        <!-- Trip Title -->
+        <h2 class="trip-header">{{ trip.title }}</h2>
 
-        <!-- Trip Details -->
-        <div class="col-lg-4">
-            <div class="card">
-                <div class="card-body">
-                    <p class="lead"><strong>Destination:</strong> {{ trip.destination }}</p>
-                    <p>{{ trip.description }}</p>
-                    <p><strong>Max Passengers:</strong> {{ trip.max_passengers }}</p>
-                    <p><strong>Start Date:</strong> {{ trip.start_date|date:"Y-m-d H:i" }}</p>
-                    <p><strong>Passengers ({{ trip.passengers.count }}):</strong> 
-                        {% for passenger in trip.passengers.all %}
-                            <a href="{% url 'profile' pk=passenger.pk %}" class="badge badge-info">{{ passenger.username }}</a>
-                        {% endfor %}
-                    </p>
-                    <hr>
-                    <!-- Action buttons -->
-                    <form method="post">
-                        {% csrf_token %}
-                        {% if request.user in trip.passengers.all %}
-                            <button type="submit" name="leave" class="btn btn-warning btn-block">Leave Trip</button>
-                        {% else %}
-                            <button type="submit" name="join" class="btn btn-success btn-block">Join Trip</button>
-                        {% endif %}
-                    </form>
-                    {% if request.user == trip.initiator %}
-                        <a href="{% url 'edit_trip' trip.id %}" class="btn btn-primary btn-block mt-2">Edit this Trip</a>
-                    {% endif %}
-                </div>
-            </div>
+        <!-- Carousel for Images -->
+        <div class="trip-details-container">
+            <div class="trip-details-page">
+                <!-- Trip Title -->
+                <h2 class="trip-header">{{ trip.title }}</h2>
+        
+                <!-- Carousel for Images -->
+                {% if trip.images.all %}
+                    <div id="tripCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for image in trip.images.all %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <img src="{{ image.image.url }}" class="d-block w-100 carousel-image" alt="Image {{ forloop.counter }}">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <a class="carousel-control-prev" href="#tripCarousel" role="button" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#tripCarousel" role="button" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                {% else %}
+                    <img src="/media/trip_images/default_trip_image.jpg" class="d-block w-100 carousel-image" alt="Default Trip Image">
+                {% endif %}
+
+        <!-- Trip Details Section -->
+        <div class="trip-info">
+            <p><strong>Destination:</strong> {{ trip.destination }}</p>
+            <p>{{ trip.description }}</p>
+            <p><strong>Max Passengers:</strong> {{ trip.max_passengers }}</p>
+            <p><strong>Start Date:</strong> {{ trip.start_date|date:"Y-m-d H:i" }}</p>
+            <p><strong>Passengers:</strong> 
+                {% for passenger in trip.passengers.all %}
+                    <a href="{% url 'profile' pk=passenger.pk %}" class="badge badge-info">{{ passenger.username }}</a>
+                {% endfor %}
+            </p>
+            <!-- Action buttons -->
+            <form method="post">
+                {% csrf_token %}
+                {% if request.user in trip.passengers.all %}
+                    <button type="submit" name="leave" class="btn btn-warning">Leave Trip</button>
+                {% else %}
+                    <button type="submit" name="join" class="btn btn-success">Join Trip</button>
+                {% endif %}
+                {% if request.user == trip.initiator %}
+                    <a href="{% url 'edit_trip' trip.id %}" class="btn btn-primary mt-2">Edit this Trip</a>
+                {% endif %}
+            </form>
         </div>
     </div>
 
+    <!-- Comments Section -->
     <div class="container mt-5">
         <h2 class="mb-4">Comments</h2>
         <div class="comments-list">
@@ -97,16 +94,5 @@
             <p class="mt-4"><a href="{% url 'login' %}">Log in</a> to post a comment.</p>
         {% endif %}
     </div>
-    
-    {% endblock %}
-    
-    {% block css %}
-    <style>
-        .comments-list .card {
-            margin-bottom: 15px;
-        }
-        .comment-form textarea {
-            margin-bottom: 10px;
-        }
-    </style>
-    {% endblock %}
+</div>
+{% endblock %}

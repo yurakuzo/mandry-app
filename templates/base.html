@@ -54,19 +54,12 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="homeDropdownMenuLink">
                 {% if user.is_authenticated %}
-                  
-                  <div class="language-section dropdown-item">
-                    <label>Select Language:</label>
-                    <div>
-                      <input type="radio" id="english" name="language" value="en">
-                      <label for="english">English</label>
-                    </div>
-                    <div>
-                      <input type="radio" id="spanish" name="language" value="ua">
-                      <label for="spanish">Ukrainian</label>
-                    </div>
-                  </div>
-                  <a class="dropdown-item" href="{% url 'create_trip' %}">Some other setting</a>
+
+                <a class="dropdown-item" href="{% url 'mytrips' %}">View my trips</a>
+                <a class="dropdown-item" href="{% url 'create_trip' %}">Create a trip</a>
+
+              
+
                 {% else %}
                   
                   <div class="language-section dropdown-item">

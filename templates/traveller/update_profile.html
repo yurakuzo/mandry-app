@@ -1,12 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2>Update Profile</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Update</button>
-    </form>
+<div class="login-container">
+    <div class="login-page">
+        <div class="login-container">
+            <h2 class="login-header">Update Profile</h2>
+            <form method="post" enctype="multipart/form-data" class="col s12">
+                {% csrf_token %}
+                <div class="row">
+                    {% for field in form %}
+                        <div class="input-field col s12">
+                            {{ field }}
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="waves-effect waves-light btn">Update</button>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}
