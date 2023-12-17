@@ -58,40 +58,69 @@ header {
   top: 0;
   z-index: 1000; /* Ensure header is above other content */
 } 
-footer {
-  position: relative; /* Needed for absolute positioning inside */
-  margin-top: auto;
-  color: white; /* For white text */
-  text-align: center;
-  font-weight: bold; /* Make the text bold */
-  /* If you want to blur the background image: */
-  /* backdrop-filter: blur(8px); */
-}
+
 
   main {
     flex-grow: 1; /* Allows main to grow and push footer down */
     padding-top: 80px; /* Adjust as needed */
 }
-footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-image: url('/static/traveller/img/footer.png'); /* Correct the path */
-  background-size: cover;
-  background-position: center;
-  filter: blur(4px); /* Apply blur to the image itself */
-  z-index: -1;
+body{margin-top:20px;}
+.footer {
+    background:#b4f0dd;
+	padding-bottom: 50px;
+	padding-top: 80px;
 }
-.footer-background {
-  position: relative; /* This makes the pseudo-element position relative to the footer */
-  overflow: hidden; /* Ensures the blur doesn't bleed outside the footer */
+.footer_menu {
+	margin-bottom: 20px;
 }
-.footer-text {
-  font-weight: bold; /* This will make the text bold */
-  /* Or use a numeric value like 600, 700 (equivalent to 'bold'), 800, etc. to specify the weight */
+.footer_menu ul {
+	list-style: none;
+	text-align: center;
 }
+.footer_menu ul li{display: inline-block;}
+.footer_menu ul li a {
+	color:#000000;
+	padding: 0 10px;
+	-webkit-transition: 0.3s;
+	transition: 0.3s;
+}
+.footer_menu ul li a:hover{color:#554c86;}
 
+/*START FOOTER SOCIAL DESIGN*/
+.footer_profile{margin-bottom:40px;}
+.footer_profile ul{
+list-style: outside none none;
+margin: 0;
+padding: 0
+}
+.footer_profile ul li{
+display: inline-block;
+}
+@media only screen and (max-width:480px) { 
+.footer_profile ul li{margin:2px;}
+}
+.footer_profile ul li a img{width:60px;}
 
+.footer_profile ul li a {
+	background: #b3a051;
+	width: 40px;
+	height: 40px;
+	display: block;
+	text-align: center;
+	margin-right: 5px;
+	border-radius: 50%;
+	line-height: 40px;
+	box-sizing: border-box;
+	text-decoration: none;
+	-webkit-transition: .3s;
+	transition: .3s;
+	color: #000000;
+}
+.footer_copyright {
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: #000000;
+}
