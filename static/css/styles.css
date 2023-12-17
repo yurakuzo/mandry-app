@@ -95,8 +95,6 @@
     color: transparent; /* Makes placeholder text transparent on focus */
 }
 
-
-
 .btn {
     position: relative;
     overflow: hidden;
@@ -118,6 +116,7 @@
 .btn:hover:before {
     transform: scaleY(1);
 }
+
 /* Trip page styling */
 .trip-container {
     background: url('/media/background_images/background-login.png') no-repeat center center fixed;
