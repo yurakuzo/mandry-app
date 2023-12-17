@@ -7,8 +7,7 @@ class TripCreationForm(forms.ModelForm):
         model = Trip
         fields = ['title', 'destination', 'description', 'max_passengers', 'start_date']
         widgets = {
-            'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-        }
+            'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'})}
 
     def save(self, **kwargs):
         user = kwargs.pop('user', None)
