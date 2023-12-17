@@ -231,3 +231,24 @@ textarea.form-control, input.form-control {
     color: #fff;
 }
 
+.gradient-background {
+    border-radius: 10px;
+    background: linear-gradient(145deg, #a2e9d4, #ffe47a);
+    width: auto;
+}
+
+.gradient-background-reversed {
+    border-radius: 10px;
+    background: linear-gradient(275deg, #ffe47a, #a2e9d4, );
+    width: auto;
+}
+
+.text-gradient {
+    background: linear-gradient(145deg, rgb(192, 150, 95), rgb(96, 184, 96));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.section-padding {
+    padding: 20px 0;
+}
