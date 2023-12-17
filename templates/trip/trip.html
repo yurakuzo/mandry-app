@@ -1,35 +1,41 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-    <div class="container mt-4">
-        <h1 class="mb-4 text-center">All Trips</h1>
+<div class="custom-background">
+    <h1 class="mb-4 text-center text-white">All Trips</h1>
 
-        <div class="search mb-4">
-            <input type="text" id="search-input" placeholder="Search by name or username" class="form-control">
-        </div>
+    <div class="search mb-4">
+        <input type="text" id="search-input" placeholder="Search by name" class="form-control" style="background-color: white; border-radius: 3px; padding: 2px; border: 1px solid #ccc;">
+    </div>
+    
 
-        <div id="search-results" class="row"></div>
+    <div id="search-results" class="row"></div>
 
-        <div id="static-trips-list" class="row">
-            {% for trip in all_trips %}
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <a href="{% url 'trip_detail' pk=trip.pk %}" class="text-decoration-none">{{ trip.title }}</a>
-                            </h5>
-                            <p class="card-text">{{ trip.description|truncatewords:20 }}</p>
-                            <p class="card-text">
-                                <small class="text-muted">Start Date: {{ trip.start_date|date:"Y-m-d" }}</small><br>
-                                <small class="text-muted">Passengers: {{ trip.passengers.count }}</small>
-                            </p>
-                        </div>
+    <div id="static-trips-list" class="row">
+        {% for trip in all_trips %}
+            <div class="col-md-4 mb-4">
+                <div class="card hoverable shadow-sm">
+                    <div class="card-content">
+                        <h5 class="card-title">
+                            <a href="{% url 'trip_detail' pk=trip.pk %}" class="text-decoration-none text-dark">{{ trip.title }}</a>
+                        </h5>
+                        <p>{{ trip.description|truncatewords:20 }}</p>
+                        <p class="grey-text text-darken-1">
+                            <small>Start Date: {{ trip.start_date|date:"Y-m-d" }}</small><br>
+                            <small>Passengers: {{ trip.passengers.count }}</small>
+                        </p>
                     </div>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
