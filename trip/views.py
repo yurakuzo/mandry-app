@@ -23,7 +23,7 @@ class MyTripsView(ListView):
 
 class TripCreationView(LoginRequiredMixin, generic.CreateView):
     form_class = TripCreationForm
-    success_url = reverse_lazy('main_page')
+    success_url = reverse_lazy('mytrips')
     template_name = 'trip/create_trip.html'
     model = Trip
 
