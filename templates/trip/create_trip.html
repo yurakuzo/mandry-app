@@ -1,34 +1,72 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h2>Create New Trip</h2>
-    <form method="post" class="form">
-        {% csrf_token %}
-        
-        {% for field in form %}
-            <div class="form-group">
-                {{ field.label_tag }}
-                {{ field }}
-                {% if field.errors %}
-                    <div class="alert alert-danger">
-                        {% for error in field.errors %}
-                            {{ error }}
-                        {% endfor %}
+<div class="login-container">
+    <div class="login-page">
+        <div class="login-container">
+            <h2 class="login-header">Create New Trip</h2>
+            <form method="post" class="col s12">
+                {% csrf_token %}
+                
+                <!-- Manually create each form field -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form.title }}
+                        <label for="id_title">Title</label>
                     </div>
-                {% endif %}
-            </div>
-        {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form.destination }}
+                        <label for="id_destination">Destination</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="id_description" class="materialize-textarea" name="description">{{ form.description.value|default_if_none:"" }}</textarea>
+                        <label for="id_description">Description</label>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form.max_passengers }}
+                        <label for="id_max_passengers">Max Passengers</label>
+                    </div>
+                </div>
+               <div class="row">
+                    <div class="input-field col s12">
+                        {{ form.start_date }}
+                        <label for="id_start_date" class="active">Start Date</label>
+                    </div>
+                </div>
 
-        <button type="submit" class="btn btn-primary">Create Trip</button>
-    </form>
-    
-    {% if form.non_field_errors %}
-        <div class="alert alert-danger">
-            {% for error in form.non_field_errors %}
-                {{ error }}
-            {% endfor %}
+                <button type="submit" class="waves-effect waves-light btn">Create Trip</button>
+            </form>
+
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
-    {% endif %}
+    </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        M.updateTextFields();
+    });
+</script>
 {% endblock %}

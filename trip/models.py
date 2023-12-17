@@ -10,11 +10,11 @@ DIFFICULTY_CHOICES = [
 
 
 class Trip(models.Model):
-    title = models.CharField(max_length=35, default="Trip")
-    destination = models.CharField(max_length=70, default="Destination")
+    title = models.CharField(max_length=35)
+    destination = models.CharField(max_length=70)
     description = models.TextField()
     initiator = models.ForeignKey(Traveller, on_delete=models.CASCADE)
-    max_passengers = models.IntegerField(default=5)
+    max_passengers = models.IntegerField()
     passengers = models.ManyToManyField(Traveller, related_name='joined_trips', blank=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
