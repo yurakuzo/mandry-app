@@ -14,5 +14,5 @@ class Config(Enum):
     POSTGRES_DB = os.environ.get('POSTGRES_DB', 'proj_db')
     POSTGRES_USER = os.environ.get('POSTGRES_USER', 'proj_usr')
     POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', 'postgres')
-    
+
     POSTGRES_EXTERNAL_URL = os.environ.get('POSTGRES_EXTERNAL_URL')

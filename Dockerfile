@@ -28,4 +28,4 @@ EXPOSE 5000
 COPY entrypoint.sh /usr/src/
 RUN chmod +x /usr/src/entrypoint.sh
 
-CMD ["/usr/src/entrypoint.sh"]
+# CMD ["/usr/src/entrypoint.sh"]
