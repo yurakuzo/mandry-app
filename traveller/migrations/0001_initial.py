@@ -8,6 +8,21 @@ import django.db.models.deletion
 import django.utils.timezone
 
 
+def create_default_user(apps, schema_editor):
+    Traveller = apps.get_model('traveller', 'Traveller')
+    Traveller.objects.create_superuser(
+        first_name = "John",
+        last_name = "Doe",
+        phone_number = "0672638192",
+        email = "admin@example.com",
+    )
+    Traveller.objects.create_user(
+        first_name = "Jane",
+        last_name = "Doe",
+        phone_number = "0672638193",
+        email = "user1@example.com",
+    )
+
 class Migration(migrations.Migration):
 
     initial = True
@@ -54,4 +69,5 @@ class Migration(migrations.Migration):
                 ('receiver', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comment_receiver', to=settings.AUTH_USER_MODEL)),
             ],
         ),
+        migrations.RunPython(create_default_user),
     ]

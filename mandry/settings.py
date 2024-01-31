@@ -2,6 +2,8 @@ import os
 from pathlib import Path
 from mandry.config import Config as cfg
 
+import dj_database_url
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -56,16 +58,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mandry.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': cfg.POSTGRES_DB.value,
-        'USER': cfg.POSTGRES_USER.value,
-        'PASSWORD': cfg.POSTGRES_PASSWORD.value,
-        'HOST': cfg.POSTGRES_HOST.value,
-        'PORT': cfg.POSTGRES_PORT.value,
+if DEBUG:
+    # Development database configuration
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': cfg.POSTGRES_DB.value,
+            'USER': cfg.POSTGRES_USER.value,
+            'PASSWORD': cfg.POSTGRES_PASSWORD.value,
+            'HOST': cfg.POSTGRES_HOST.value,
+            'PORT': cfg.POSTGRES_PORT.value,
+        }
     }
-}
+else:
+    # Production database configuration
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=cfg.POSTGRES_EXTERNAL_URL.value,
+            conn_max_age=600
+        )
+    }
 
 
 AUTH_PASSWORD_VALIDATORS = [
