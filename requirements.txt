@@ -1,11 +1,15 @@
 asgiref==3.7.2
 astroid==2.15.6
+cffi==1.16.0
+colorama==0.4.6
 dill==0.3.7
 dj-database-url==2.1.0
 Django==4.2.5
 djangorestframework==3.14.0
 Faker==19.6.2
 flake8==6.1.0
+gevent==23.9.1
+greenlet==3.0.3
 gunicorn==21.2.0
 isort==5.12.0
 lazy-object-proxy==1.9.0
@@ -15,6 +19,7 @@ platformdirs==3.10.0
 psycopg2==2.9.7
 psycopg2-binary==2.9.7
 pycodestyle==2.11.0
+pycparser==2.21
 pyflakes==3.1.0
 pylint==2.17.5
 python-dateutil==2.8.2
@@ -24,4 +29,7 @@ sqlparse==0.4.4
 tomli==2.0.1
 tomlkit==0.12.1
 typing_extensions==4.8.0
+tzdata==2023.4
 wrapt==1.15.0
+zope.event==5.0
+zope.interface==6.1

@@ -1,4 +1,5 @@
-FROM python:3.11-alpine
+# Base Stage
+FROM python:3.11 as base
 
 # Setup environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -8,7 +9,9 @@ ENV PIP_ROOT_USER_ACTION=ignore
 WORKDIR /usr/src/
 
 # Install dependencies
-RUN apk update && apk add --no-cache postgresql-dev python3-dev musl-dev gcc
+RUN apt-get update && \
+    apt-get install -y python3-dev python3-ldap python3-gevent python3-setuptools musl-dev gcc redis redis-server && \
+    apt install netcat-traditional
 
 # Install Python dependencies
 COPY requirements.txt .
@@ -22,7 +25,7 @@ COPY . .
 EXPOSE 5000
 
 # Copy and grant execution permissions to the start script
-COPY ./entrypoint.sh /usr/src/
+COPY entrypoint.sh /usr/src/
 RUN chmod +x /usr/src/entrypoint.sh
 
-ENTRYPOINT [ "/usr/src/entrypoint.sh" ]
+CMD ["/usr/src/entrypoint.sh"]

@@ -24,7 +24,7 @@ python3 manage.py collectstatic --noinput
 
 echo "Starting Django application with Gunicorn..."
 # Start Django application using Gunicorn with specified settings
-exec gunicorn pet_app.wsgi \
+exec gunicorn mandry.wsgi \
     --worker-class=gevent \
     --worker-connections=1000 \
     --workers=3 \

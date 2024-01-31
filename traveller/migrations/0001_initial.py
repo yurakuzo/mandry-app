@@ -11,12 +11,14 @@ import django.utils.timezone
 def create_default_user(apps, schema_editor):
     Traveller = apps.get_model('traveller', 'Traveller')
     Traveller.objects.create_superuser(
+        username="admin",
         first_name = "John",
         last_name = "Doe",
         phone_number = "0672638192",
         email = "admin@example.com",
     )
     Traveller.objects.create_user(
+        username="user1",
         first_name = "Jane",
         last_name = "Doe",
         phone_number = "0672638193",
